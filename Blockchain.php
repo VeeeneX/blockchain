@@ -1,10 +1,10 @@
 <?php
 namespace Blockchain;
 
-use Blockchain\Block;
+use Blockchain\BlockInterface;
 use DateTime;
 
-class Blockchain
+class Blockchain implements BlockchainInterface
 {
     /**
      * @var array
@@ -26,10 +26,10 @@ class Blockchain
     }
 
     /**
-     * @param \Blockchain\Block $block
-     * @return \Blockchain\Block
+     * @param BlockInterface $block
+     * @return BlockInterface
      */
-    public function addBlock(Block $block)
+    public function addBlock(BlockInterface $block)
     {
         $this->chain[] = $block;
         return $block;
@@ -38,7 +38,7 @@ class Blockchain
     /**
      * @return array
      */
-    public function getChain()
+    public function getChain(): array
     {
         return $this->chain;
     }
@@ -47,7 +47,7 @@ class Blockchain
      * @param $i
      * @return mixed
      */
-    public function getBlock($i)
+    public function getBlock($i): BlockInterface
     {
         return $this->chain[$i];
     }
@@ -57,13 +57,15 @@ class Blockchain
      */
     private function createGenesisBlock()
     {
-        return  new \Blockchain\Block(new DateTime(), [], '');
+        return new Block(new DateTime(), [], '');
     }
 
     /**
+     * 1. Check for longest chain
+     * 2. Check work
      * @return bool
      */
-    public function validate()
+    public function validate(): bool
     {
         for ($i = 1; $i < count($this->getChain()); $i++) {
             $currentBlock = $this->getBlock($i);
@@ -85,7 +87,10 @@ class Blockchain
         return true;
     }
 
-    public function getDifficulty()
+    /**
+     * @return int
+     */
+    public function getDifficulty(): int
     {
         return $this->difficulty;
     }

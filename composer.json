@@ -1,0 +1,21 @@
+{
+    "name": "veeenex/blockchain",
+    "description": "Blockchain in php",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "VeeeneX",
+            "email": "veeenex@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "react/datagram": "^1.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Blockchain\\": "."
+        }
+    }
+}
