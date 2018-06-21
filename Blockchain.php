@@ -22,7 +22,7 @@ class Blockchain implements BlockchainInterface
     public function __construct()
     {
         $this->chain = [$this->createGenesisBlock()];
-        $this->difficulty = 7;
+        $this->difficulty = 4;
     }
 
     /**
@@ -61,7 +61,7 @@ class Blockchain implements BlockchainInterface
     }
 
     /**
-     * 1. Check for longest chain
+     * @todo 1. Check for longest chain
      * 2. Check work
      * @return bool
      */
